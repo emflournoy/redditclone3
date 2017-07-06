@@ -1,0 +1,62 @@
+
+<main class="container">
+
+  <div class="pull-right">
+    <p><a class="btn btn-info" ng-click="$ctrl.showPostForm()">New Post</a></p>
+  </div>
+
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active">
+      <input type="search" class="form-control input-sm search-form" placeholder="Filter" ng-model="filterWord">
+    </li>
+      <li>
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" type="button">Sort By {{ $ctrl.sortTopicShow }}</a>
+          <ul class="dropdown-menu">
+            <li><a ng-click="$ctrl.sortBy('Vote_count')">Votes</a><li>
+            <li><a ng-click="$ctrl.sortBy('Date')">Date</a></li>
+            <li><a ng-click="$ctrl.sortBy('Title')">Title</a></li>
+          </ul>
+        </div>
+      </li>
+  </ul>
+
+  <div class="row" ng-if="$ctrl.showForm">
+    <div class="col-md-8">
+
+      <form name="submitPost" ng-submit="$ctrl.submitPost()">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" class="form-control" ng-model="$ctrl.post.title" required>
+        </div>
+        <div>
+          <label for="body">Body</label>
+          <textarea id="body" class="form-control" ng-model="$ctrl.post.body" required></textarea>
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input id="author" class="form-control" ng-model="$ctrl.post.author" required>
+        </div>
+        <div>
+          <label for="image-url">Image URL</label>
+          <input id="image-url" class="form-control"
+          ng-model="$ctrl.post.image_url" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" ng-disabled="submitPost.$invalid">
+            Create Post
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div ng-repeat="post in $ctrl.posts | filter:filterWord | orderBy:$ctrl.sortTopic:true">
+        <post posts="$ctrl.posts"></post>
+      </div>
+    </div>
+  </div>
+</main>
