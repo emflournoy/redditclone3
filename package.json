@@ -12,9 +12,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "dependencies": {
     "angular": "^1.6.0",
     "angular-moment": "^1.0.1",
