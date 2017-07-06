@@ -3,16 +3,13 @@
 
   angular.module('reddit')
     .component('newPost', {
-      bindings: {
-        posts: '='
-      },
       controller: redditController,
       templateUrl: "./posts/posts.template.html"
     })
 
-    redditController.$inject = ['$http', '$scope', 'postService'];
+    redditController.$inject = ['$http', 'postService'];
 
-      function redditController($http, $scope, postService){
+      function redditController($http, postService){
         const vm = this;
 
         vm.$onInit = function () {
@@ -21,7 +18,11 @@
           vm.posts = [];
           vm.sortTopic = 'votes';
           vm.sortTopicShow = 'Votes'
-          postService.getPosts().then(posts => vm.posts = posts);
+          // postService.getPosts().then(posts => vm.posts = posts);
+          $http.get('/api/posts').then(function (response) {
+            vm.posts = response.data;
+            console.log(response);
+          })
         }
 
         vm.showPostForm = function() {

@@ -1,0 +1,17 @@
+
+<div class="row">
+  <div class="col-md-offset-1">
+    <hr>
+    <p ng-repeat="comment in $ctrl.post.comments">
+      {{ comment.content }}
+    </p>
+    <form class="form-inline" name="submitCom" ng-submit="$ctrl.submitCom(post)">
+      <div class="form-group">
+        <input class="form-control" ng-model="post.comment" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" ng-disabled="submitCom.$invalid">
+      </div>
+    </form>
+  </div>
+</div>

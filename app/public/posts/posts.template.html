@@ -54,8 +54,8 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div ng-repeat="post in $ctrl.posts | filter:filterWord | orderBy:$ctrl.sortTopic:true">
-        <post posts="$ctrl.posts"></post>
+      <div ng-repeat="post in $ctrl.posts | filter:filterWord | orderBy:$ctrl.sortTopic:true"   ng-init="$ctrl.makeComments(post)" ng-submit="$ctrl.sortCards()">
+        <single-post post="post"></single-post>
       </div>
     </div>
   </div>

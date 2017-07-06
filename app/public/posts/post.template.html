@@ -1,53 +1,37 @@
-<div class="well"  ng-init="$ctrl.makeComments(post)" ng-submit="$ctrl.sortCards()">
+<div class="well">
   <div class="media-left">
-    <img class="media-object" ng-src="{{post.image_url}}">
-    <a ui-sref="editPost({id: post.id})">edit</a>
+    <img class="media-object" ng-src="{{ $ctrl.post.image_url}}">
+    <a ui-sref="editPost({id: $ctrl.post.id})">edit</a>
   </div>
   <div class="media-body">
     <h4 class="media-heading">
-      {{ post.title }}
+      {{ $ctrl.post.title }}
       |
       <a><i class="glyphicon glyphicon-arrow-up" ng-click="$ctrl.votesUp(post)"></i></a>
       <a><i class="glyphicon glyphicon-arrow-down" ng-click="$ctrl.votesDown(post)"></i></a>
-      {{ post.vote_count }}
+      {{ $ctrl.post.vote_count }}
     </h4>
     <div class="text-right">
-      {{ post.author }}
+      {{ $ctrl.post.author }}
     </div>
     <p>
-      {{ post.body }}
+      {{ $ctrl.post.body }}
     </p>
     <div>
-      {{ post.created_at | date:'short'}}
+      {{ $ctrl.post.created_at | date:'short'}}
       <!-- <time ng-time-ago:""></time> -->
       |
       <i class="glyphicon glyphicon-comment"></i>
 
 
-      <a ng-click="$ctrl.showComForm(post)">
+      <a ng-click="$ctrl.showComForm($ctrl.post)">
         <ng-pluralize
-          count="post.comments.length || 0"
+          count="$ctrl.post.comments.length || 0"
           when="{'0': '0 Comments', 'one': '1 Comment', 'other': '{} Comments'}">
         </ng-pluralize>
       </a>
 
     </div>
-
-    <div class="row" ng-if="post.showComment">
-      <div class="col-md-offset-1">
-        <hr>
-        <p ng-repeat="comment in post.comments">
-          {{ comment.content }}
-        </p>
-        <form class="form-inline" name="submitCom" ng-submit="$ctrl.submitCom(post)">
-          <div class="form-group">
-            <input class="form-control" ng-model="post.comment" required>
-          </div>
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary" ng-disabled="submitCom.$invalid">
-          </div>
-        </form>
-      </div>
-    </div>
+      <post-comments ng-if="$ctrl.post.showComment" post="$ctrl.post"></post-comments>
   </div>
 </div>

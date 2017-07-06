@@ -12,9 +12,6 @@
         const vm = this;
 
         vm.$onInit = function () {
-          console.log('cheese');
-          console.log($stateParams.id);
-          console.log($stateParams);
           $http.get(`/api/posts/${$stateParams.id}`).then(function (response) {
             vm.post = response.data;
           })
