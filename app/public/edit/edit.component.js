@@ -3,7 +3,7 @@
   angular.module('reddit')
     .component('editPost', {
       controller: redditController,
-      templateUrl: "./post/edit.template.html"
+      templateUrl: "./edit/edit.template.html"
     })
 
     redditController.$inject = ['$http', '$stateParams', '$state'];
