@@ -24,9 +24,9 @@
       })
 
       .state({
-        name: 'editPost',
+        name: 'postForm',
         url: '/:id',
-        component: 'editPost',
+        component: 'postForm',
       })
   }
 

@@ -1,9 +1,9 @@
 (function() {
   'use strict'
   angular.module('reddit')
-    .component('editPost', {
+    .component('postForm', {
       controller: redditController,
-      templateUrl: "./edit/edit.template.html"
+      templateUrl: "./form/form.template.html"
     })
 
     redditController.$inject = ['$http', '$stateParams', '$state'];
@@ -11,10 +11,12 @@
       function redditController($http, $stateParams, $state){
         const vm = this;
 
-        vm.$onInit = function () {
-          $http.get(`/api/posts/${$stateParams.id}`).then(function (response) {
-            vm.post = response.data;
-          })
+        if($stateParams.id){
+          vm.$onInit = function () {
+            $http.get(`/api/posts/${$stateParams.id}`).then(function (response) {
+              vm.post = response.data;
+            })
+          }
         }
 
 

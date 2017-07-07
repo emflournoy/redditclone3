@@ -24,7 +24,10 @@
   <div class="row" ng-if="$ctrl.showForm">
     <div class="col-md-8">
 
-      <form name="submitPost" ng-submit="$ctrl.submitPost()">
+    <post-form></post-form>
+
+
+      <!-- <form name="submitPost" ng-submit="$ctrl.submitPost()">
         <div>
           <label for="title">Title</label>
           <input id="title" class="form-control" ng-model="$ctrl.post.title" required>
@@ -47,7 +50,7 @@
             Create Post
           </button>
         </div>
-      </form>
+      </form> -->
 
     </div>
   </div>
