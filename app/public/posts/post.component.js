@@ -15,7 +15,6 @@
 
 
         vm.showComForm = function(post) {
-          console.log(post);
           if (vm.post.showComment){
             vm.post.showComment = false;
           } else {
@@ -25,11 +24,11 @@
 
 
         vm.votesUp = function(post) {
-          post.vote_count++
+          vm.post.vote_count++
         }
 
         vm.votesDown = function(post) {
-          post.vote_count--
+          vm.post.vote_count--
         }
 
       }

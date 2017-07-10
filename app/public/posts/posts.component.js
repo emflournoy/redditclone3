@@ -7,9 +7,9 @@
       templateUrl: "./posts/posts.template.html"
     })
 
-    redditController.$inject = ['$http', 'postService'];
+    redditController.$inject = ['$http', '$stateParams', 'postService'];
 
-      function redditController($http, postService){
+      function redditController($http, $stateParams, postService){
         const vm = this;
 
         vm.$onInit = function () {
@@ -18,11 +18,8 @@
           vm.posts = [];
           vm.sortTopic = 'votes';
           vm.sortTopicShow = 'Votes'
-          // postService.getPosts().then(posts => vm.posts = posts);
-          $http.get('/api/posts').then(function (response) {
-            vm.posts = response.data;
-            console.log(response);
-          })
+          postService.getPosts().then(posts => vm.posts = posts);
+
         }
 
         vm.showPostForm = function() {
@@ -33,19 +30,38 @@
           }
         }
 
-        vm.submitPost = function() {
-          vm.post.vote_count = 0;
-          vm.post.comments = [];
-          vm.post.created_at = new Date();
-          vm.showComment = false;
-          vm.post.comments.show = false;
-          vm.showForm = fase;
-          $http.post('api/posts', vm.post).then(function (response){
-            response.data.comments = [];
-            vm.posts.push(response.data)
+        vm.submitnewpost = function(post) {
+          console.log('submit from post');
+          postService.makePost(post)
+          .then(function (response){
+            console.log('THIS IS THEN');
+            console.log('posts', vm.posts);
+            vm.posts.push(response)
+            console.log(response);
+            response.comments = [];
           })
-          delete vm.post;
+          // delete vm.post;
+          vm.showForm = false;
         }
+
+        // vm.submitpost = function() {
+        //   console.log($stateParams);
+        //   if($stateParams.id){
+        //     postService.patchPost($stateParams.id, vm.post)
+        //     .then(function (response){
+        //       $state.go("newPost");
+        //     })
+        //   } else {
+        //     postService.makePost(vm.post)
+        //     .then(function (response){
+        //       response.data.comments = [];
+        //       vm.posts.push(response.data)
+        //     })
+        //     delete vm.post;
+        //   vm.showForm = false;
+        //   }
+        // }
+
 
         vm.sortBy = function(topic) {
           vm.sortTopic = topic.toLowerCase();

@@ -24,34 +24,8 @@
   <div class="row" ng-if="$ctrl.showForm">
     <div class="col-md-8">
 
-    <post-form></post-form>
-
-
-      <!-- <form name="submitPost" ng-submit="$ctrl.submitPost()">
-        <div>
-          <label for="title">Title</label>
-          <input id="title" class="form-control" ng-model="$ctrl.post.title" required>
-        </div>
-        <div>
-          <label for="body">Body</label>
-          <textarea id="body" class="form-control" ng-model="$ctrl.post.body" required></textarea>
-        </div>
-        <div>
-          <label for="author">Author</label>
-          <input id="author" class="form-control" ng-model="$ctrl.post.author" required>
-        </div>
-        <div>
-          <label for="image-url">Image URL</label>
-          <input id="image-url" class="form-control"
-          ng-model="$ctrl.post.image_url" required>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary" ng-disabled="submitPost.$invalid">
-            Create Post
-          </button>
-        </div>
-      </form> -->
-
+    <post-form ng-if="$ctrl.showForm" submitnewpost="$ctrl.submitnewpost(post)" post="$ctrl.post"></post-form>
+{{$ctrl.post}}
     </div>
   </div>
 
