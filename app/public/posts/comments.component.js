@@ -7,22 +7,38 @@
       bindings: {post: '='}
     });
 
-    redditController.$inject = ['$http', '$state', 'postService'];
+    redditController.$inject = ['$http', '$stateParams', '$state', 'postService'];
 
-      function redditController($http, $state, postService){
+      function redditController($http, $state, $stateParams, postService){
         const vm = this;
 
 
-        vm.submitCom = function(post) {
-          let commentObj = {};
-          commentObj.content = post.comment;
-          commentObj.created_at = new Date();
-          commentObj.post_id = post.id;
-          $http.post(`api/posts/${post.id}/comments`, commentObj).then(function (response){
-            post.comments.push(commentObj);
+        vm.submitCom = function(comment) {
+          console.log(comment);
+          let commentObj = {content: comment};
+          // commentObj.content = comment;
+          postService.makeComment(vm.post, commentObj)
+          .then(function (response){
+            // console.log(response);
+            vm.post.comments.push(response);
           })
-          delete post.comment;
+          console.log(vm.newcomment);
+          delete vm.newcomment;
         }
+
+        // vm.submitCom = function(comment) {
+        //   let commentObj = {};
+        //   console.log(vm.post.id);
+        //   commentObj.content = comment;
+        //   commentObj.created_at = new Date();
+        //   // commentObj.post_id = post.id;
+        //   $http.post(`api/posts/${vm.post.id}/comments`,
+        //    comment).then(function (response){
+        //      console.log(response);
+        //     post.comments.push(comment);
+        //   })
+        //   // delete post.comment;
+        // }
 
 
       }

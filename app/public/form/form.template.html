@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-{{$ctrl.submitnewpost}}
       <form name="submitPost" ng-submit="$ctrl.submitpost()">
         <div>
           <label for="title">Title</label>
@@ -23,7 +22,7 @@
         <div class="form-group">
           <br>
           <button type="submit" class="btn btn-primary" ng-disabled="submitPost.$invalid">
-            Post
+            {{ $ctrl.buttonname }}
           </button>
         </div>
       </form>

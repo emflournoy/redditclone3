@@ -26,6 +26,13 @@ service.$inject = ['$http'];
       })
     }
 
+    this.makeComment = function(post, comment){
+      return $http.post(`api/posts/${post.id}/comments`,
+       comment).then(function (response){
+        return response.data;
+      })
+    }
+
     this.patchPost = function(id, post){
       return $http.patch(`/api/posts/${id}`, post).then(function (response) {
         return response.data;

@@ -27,6 +27,11 @@
         name: 'postForm',
         url: '/:id',
         component: 'postForm',
+        resolve: {
+          buttonname: function(){
+            return "Update Post"
+          }
+        }
       })
   }
 

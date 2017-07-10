@@ -34,10 +34,7 @@
           console.log('submit from post');
           postService.makePost(post)
           .then(function (response){
-            console.log('THIS IS THEN');
-            console.log('posts', vm.posts);
             vm.posts.push(response)
-            console.log(response);
             response.comments = [];
           })
           // delete vm.post;

@@ -4,7 +4,7 @@
     .component('postForm', {
       controller: redditController,
       templateUrl: "./form/form.template.html",
-      bindings: { post: '<', submitnewpost: '&'}
+      bindings: { post: '<', submitnewpost: '&', buttonname: '@'}
     })
 
     redditController.$inject = ['$http', '$stateParams', '$state', 'postService'];
